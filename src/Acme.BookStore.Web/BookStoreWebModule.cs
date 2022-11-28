@@ -37,10 +37,12 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Docs;
 
 namespace Acme.BookStore.Web;
 
 [DependsOn(
+     typeof(DocsWebModule),
     typeof(BookStoreHttpApiModule),
     typeof(BookStoreApplicationModule),
     typeof(BookStoreEntityFrameworkCoreModule),
@@ -53,7 +55,8 @@ namespace Acme.BookStore.Web;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpSwashbuckleModule)
     )]
-public class BookStoreWebModule : AbpModule
+[DependsOn(typeof(DocsWebModule))]
+    public class BookStoreWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Acme.BookStore.MultiTenancy;
 using Volo.Abp.AuditLogging;
@@ -13,10 +13,12 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.OpenIddict;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Docs;
 
 namespace Acme.BookStore;
 
 [DependsOn(
+     typeof(DocsDomainModule),
     typeof(BookStoreDomainSharedModule),
     typeof(AbpAuditLoggingDomainModule),
     typeof(AbpBackgroundJobsDomainModule),
@@ -29,6 +31,7 @@ namespace Acme.BookStore;
     typeof(AbpTenantManagementDomainModule),
     typeof(AbpEmailingModule)
 )]
+[DependsOn(typeof(DocsDomainModule))]
 public class BookStoreDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
